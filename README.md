@@ -5,11 +5,33 @@ Simple [siege.js](https://github.com/kissjs/siege.js)-based benchmark of
 [Hogan.js](https://github.com/twitter/hogan.js) vs [Mu](https://github.com/raycmorgan/Mu).
 
 
+Motivation
+----------
+
+I'm in the process of optimizing a mustache template compiler / renderer for a
+Node.js web application. Having successfully used Hogan.js before for in-browser 
+templating, I decided to use Hogan as the templating engine on the back-end. 
+
+As part of my integration tests, I run a set of siege.js ('apache-bench'-like) tests. 
+At first, the results were good, but as more content was added to the pages, I noticed that the requests
+per second (rps) dropped a great deal more than I expected. After spending some
+time profiling the app (btw, [node-webkit-agent](https://github.com/c4milo/node-webkit-agent)
+is a great tool for that) it looked as though the GC was taking significantly 
+more time than anything else.
+
+That got me thinking that it may be wasteful to render the whole page as a
+string, send that string to the client, and then leave that 200K string for
+the GC to clean-up on every single request. So, I started looking
+for a Mustache compiler that will be able to stream the data out to the
+user in chunks. Having found Mu, I needed a more-or-less clean benchmark
+comparing the two, which is what this repo is.
+
+
 Initial Observations
 --------------------
 
-Hogan.js is (2x) faster for smaller (148B) templates. Mu is 
-significantly (4x) faster for larger (226K [wsj.com homepage]) 
+Hogan.js is (2x) more efficient in rendering *smaller* (148B) templates. Mu is 
+significantly (4x) more efficient in rendering *larger* (226K [wsj.com homepage]) 
 templates.
 
 
@@ -22,8 +44,8 @@ To Execute
 
 
 
-Result Data
------------
+Bench Data
+----------
 
 Notes: 
   Taken on a MacBook Pro 2.53 GHz Intel Core 2 Duo, 8GB RAM.
