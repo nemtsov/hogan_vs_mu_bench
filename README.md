@@ -1,5 +1,5 @@
-Hogan.js vs Mu
-==============
+Hogan.js vs Mu Bench
+====================
 
 Simple [siege.js](https://github.com/kissjs/siege.js)-based benchmark of 
 [Hogan.js](https://github.com/twitter/hogan.js) vs [Mu](https://github.com/raycmorgan/Mu).
@@ -30,8 +30,8 @@ Notes:
   request-iterations: 100000, concurrent users: 200, test-iterations: 5
 
     /hogan-mini
-	    rps: 6569, 6437, 6379, 6397, 6980
-	    response: 4ms(min)	71ms(max)	30ms(avg)
+      rps: 6569, 6437, 6379, 6397, 6980
+      response: 4ms(min)	71ms(max)	30ms(avg)
       response: 3ms(min)	74ms(max)	31ms(avg)
       response: 5ms(min)	127ms(max)	31ms(avg)
       response: 17ms(min)	93ms(max)	31ms(avg)
