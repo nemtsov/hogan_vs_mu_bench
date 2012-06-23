@@ -1,0 +1,15 @@
+{
+  "name": "hogan_vs_mu",
+  "version": "0.1.0",
+  "dependencies": {
+    "mu": "0.5.2",
+    "hogan": "1.0.5-dev"
+  },
+  "devDependencies": {
+    "siege": "0.0.2"
+  },
+  "optionalDependencies": {},
+  "engines": {
+    "node": "*"
+  }
+}
